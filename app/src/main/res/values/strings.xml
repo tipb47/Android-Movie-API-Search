@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Project8</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="title">Movie Title</string>
+    <string name="hint_enter_movie_title">Enter movie title</string>
+    <string name="search">Search</string>
+    <string name="imdb">View in IMDB</string>
+    <string name="share">Share</string>
+    <string name="year">Year</string>
+    <string name="rating">Rating:</string>
+    <string name="runtime">Runtime:</string>
+    <string name="genre">Genre:</string>
+    <string name="imdb_rating">IMDB Rating:</string>
+    <string name="feedback">Feedback</string>
+    <string name="movie_search">Movie Search</string>
+</resources>

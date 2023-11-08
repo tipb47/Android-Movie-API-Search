@@ -9,10 +9,13 @@ import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 
@@ -25,21 +28,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //feedback button
-        binding.feedbackButton.setOnClickListener {
-            // email info
-            val developerEmail = "ttbrowne@iu.edu"
-            val subject = "Feedback"
-
-            // set email intents
-            val emailIntent = Intent(Intent.ACTION_SEND)
-            emailIntent.type = "message/rfc822"
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(developerEmail))
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
-
-            // start the email composer
-            startActivity(Intent.createChooser(emailIntent, "Send Email"))
-        }
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         //search button
         binding.btnSearch.setOnClickListener {
@@ -51,6 +41,34 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    //inflate menu
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    //on feedback button clicked
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_feedback -> {
+                // email info
+                val developerEmail = "ttbrowne@iu.edu"
+                val subject = "Feedback"
+
+                // set email intents
+                val emailIntent = Intent(Intent.ACTION_SEND)
+                emailIntent.type = "message/rfc822"
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(developerEmail))
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
+
+                // start the email composer
+                startActivity(Intent.createChooser(emailIntent, "Send Email"))
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     private fun searchMovie(title: String) {
